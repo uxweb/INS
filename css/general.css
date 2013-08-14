@@ -1,7 +1,7 @@
 body
 {
 	background-color: #DDDDDD;
-	font-family: "segoe ui", Arial, Helvetica, sans-serif;
+	font-family: Arial, sans-serif;
 	font-size: 16px;
 	margin: 0 auto;
 	max-width: 1280px;
@@ -135,6 +135,9 @@ nav ul li a:hover
 {
 	background-color: #95C601;
 	color: #222222;
+	-moz-transition: background-color 0.4s;
+	-webkit-transition: background-color 0.4s;
+	transition: background-color 0.4s;
 }
 nav ul ul
 {
@@ -752,11 +755,17 @@ ul.tree .text:hover
 #proyectos.selector-block .vt-menu li:hover
 {
 	background-color: #EEEEEE;
+	-moz-transition: background-color 0.2s;
+	-webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
 }
 #proyectos.selector-block .vt-menu li.selected
 {
 	background-color: #242424;
 	color: white;
+	-moz-transition: background-color 0.8s;
+	-webkit-transition: background-color 0.8s;
+	transition: background-color 0.8s;
 }
 #seguridad a
 {

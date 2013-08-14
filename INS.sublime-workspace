@@ -280,6 +280,18 @@
 	},
 	"file_history":
 	[
+		"/D/www/INS/INS.sublime-workspace",
+		"/D/www/INS/INS.sublime-project",
+		"/D/GitHub/INS/js/almacenesCosto.js",
+		"/D/GitHub/INS/js/clavesTrabajadores.js",
+		"/D/GitHub/INS/js/conceptosAfectables.js",
+		"/D/GitHub/INS/js/listaAsistencia.js",
+		"/D/GitHub/INS/js/opciones_seleccion.js",
+		"/D/GitHub/INS/js/porcentajesFacturacion.js",
+		"/D/GitHub/INS/js/prenomina.js",
+		"/C/AppServ/Apache2.2/conf/httpd.conf",
+		"/D/GitHub/INS/css/general.css",
+		"/D/GitHub/INS/index.php",
 		"/D/GitHub/INS/README",
 		"/C/AppServ/www/ControlRemesas/inc/DBConn.php",
 		"/C/AppServ/www/ControlRemesas/inc/js/general.js",
@@ -395,19 +407,7 @@
 		"/C/AppServ/www/ControlRemesas/modulos/test.php",
 		"/C/AppServ/www/mvc/views/blog_view.php",
 		"/C/AppServ/www/mvc/views/blog_index.php",
-		"/C/AppServ/www/mvc/application/controller_base.class.php",
-		"/C/AppServ/www/mvc/controller/indexController.php",
-		"/C/AppServ/www/ControlRemesas/Remesa.class.php",
-		"/C/AppServ/www/ControlRemesas/prueba.html",
-		"/C/AppServ/www/ControlRemesas/css/login.css",
-		"/C/AppServ/www/ControlRemesas/modulos/pago/GetRemesa.php",
-		"/C/AppServ/www/ControlRemesas/modulos/pago/GetPagos.php",
-		"/C/AppServ/www/ControlRemesas/modulos/pago/EliminaPagoRemesa.php",
-		"/C/AppServ/www/ControlRemesas/modulos/pago/EliminaComprobantePago.php",
-		"/C/AppServ/www/ControlRemesas/modulos/pago/RegistraComprobantePago.php",
-		"/C/AppServ/www/ControlRemesas/modulos/pago/GetComprobantesPago.php",
-		"/C/AppServ/www/ControlRemesas/modulos/pago/GetListaCuentasBancarias.php",
-		"/C/AppServ/www/ControlRemesas/modulos/pago/RegistraPagoRemesa.php"
+		"/C/AppServ/www/mvc/application/controller_base.class.php"
 	],
 	"find":
 	{
@@ -425,6 +425,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"www",
+			"Drop",
 			"test",
 			"getRubros",
 			"operacionDocumento",
@@ -550,9 +552,7 @@
 			"GetListaDes",
 			"GetListaDestinatarios.php",
 			"eLIMINAdOCUMENTO",
-			"observaciones",
-			"ModificaMontoSolicitado.php",
-			"aqui"
+			"observaciones"
 		],
 		"highlight": true,
 		"in_selection": false,

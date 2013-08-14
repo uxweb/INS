@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	background: url(../img/bg/login-page-bg.png) repeat-x scroll 0 0 #E2E2CD;
+	margin: 0;
+	padding: 0;
+}
+#wrapper {
+	width: 420px;
+	margin: 0 auto;
+	text-align: left;
+}
+#header {
+	padding: 30px 0 0;
+	margin-bottom: 20px;
+}
+#logo {
+	background: url(../img/logo/logo-ins-login.png) no-repeat scroll center bottom transparent;
+	display: block;
+	padding-top: 80px;
+}
+#content {
+	padding: 35px 0 10px 85px;
+	color: #515348;
+	background-color: #F5F5EF;
+	line-height: 1.6em;
+	font-size: 80%;
+}
+#login-box form div {
+	margin-bottom: 10px;
+}
+#login-box form label {
+	display: block;
+	text-align: left;
+	font-weight: bold;
+	color: #6EB83A;
+}
+#login-box form input.inputtext {
+	width: 240px;
+	color: #515348;
+	padding: 3px;
+}
+input.button {
+	border: 2px solid #666;
+	background-color: #444;
+	padding: 2px 2px 2px 30px;
+	color: white;
+	cursor: pointer;
+	background-image: url("../img/Square-Light-Grey/Png/24x24/Burn.png");
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 0 50%;
+}
+input.button.disabled {
+	background-color: #CCC;
+	color: #666;
+	font-style: italic;
+}
+input.button.key {
+	background-image: url("../img/Square-Light-Grey/Png/24x24/Key.png");
+}
+input.button.loading {
+	background-image: url("../img/ajax-loader.gif");
+	background-position: 5px 50%;
+}
+#console {
+	display: none;
+}
+#console.error {
+	background-color: red;
+	color: #FFFFFF;
+	text-align: center;
+}

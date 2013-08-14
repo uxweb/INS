@@ -1,0 +1,9 @@
+[DEFAULT]
+BASEURL=http://downturk.info/
+[InternetShortcut]
+URL=http://downturk.info/
+Modified=E06502FE334DC8018E
+IconFile=C:\WINDOWS\system32\SHELL32.dll
+IconIndex=220
+HotKey=0
+IDList=

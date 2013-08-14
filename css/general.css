@@ -643,6 +643,12 @@ ul.tree .text:hover
 	width: 43px;
 	height: 50px;
 	margin-right: 1em;
+	-webkit-transition: 1s;
+}
+#logo img:hover
+{
+	-webkit-transform:rotate(360deg);
+	transform: rotate(360deg);
 }
 #main
 {

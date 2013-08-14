@@ -83,12 +83,10 @@ var LISTAASISTENCIA = {
 		LIGHTBOX.content = '<div class="ajax-loader"></div>';
 		
 		$.ajax({
-			
 			type: 'POST',
 			url: 'modulos/lanzamiento/EliminaListas.php',
 			data: {'in': PERIODOS.selectedItem.idNomina},
 			dataType: 'json',
-			cache: false,
 			
 			beforeSend: function()
 			{
@@ -266,51 +264,44 @@ var LISTAASISTENCIA = {
 		LIGHTBOX.content = '<div class="ajax-loader"></div></br><center><div id="estatus_envio">Enviando listas ...</div></center>';
 
 		var lista = null;
-		
-		/*$('#tabla_asistencia th.dia').each(function()
-		{
-			lista = $(this);
-		*/
-			$.ajax({
-				type: 'POST',
-				url: 'modulos/lanzamiento/EnviaListas.php',
-				data: {
-					idNom: PERIODOS.selectedItem.idNomina
-				},
-				dataType: 'json',
-				
-				beforeSend: function()
-				{
-					LIGHTBOX.show();
-				},
-				success: function(json)
-				{
-					try{					
-						if(!json.success)
-						{
-							messageConsole.displayMessage(json.errorMessage, 'error');
-							return false;
-						}
-						
-						messageConsole.displayMessage('Las listas de asistencia se enviaron correctamente al SAO.', 'success');
-					}
-					catch(e){
-						messageConsole.displayMessage('Error: ' + e.message, 'error');
+
+		$.ajax({
+			type: 'POST',
+			url: 'modulos/lanzamiento/EnviaListas.php',
+			data: {
+				idNom: PERIODOS.selectedItem.idNomina
+			},
+			dataType: 'json',
+			
+			beforeSend: function()
+			{
+				LIGHTBOX.show();
+			},
+			success: function(json)
+			{
+				try{					
+					if(!json.success)
+					{
+						messageConsole.displayMessage(json.errorMessage, 'error');
 						return false;
 					}
-				},
-				error: function()
-				{
-					LIGHTBOX.hide();
-				},
-				complete: function()
-				{
-					LIGHTBOX.hide();
+					
+					messageConsole.displayMessage('Las listas de asistencia se enviaron correctamente al SAO.', 'success');
 				}
-			});
-		/*});*/
-		
-		//LIGHTBOX.hide();
+				catch(e){
+					messageConsole.displayMessage('Error: ' + e.message, 'error');
+					return false;
+				}
+			},
+			error: function()
+			{
+				LIGHTBOX.hide();
+			},
+			complete: function()
+			{
+				LIGHTBOX.hide();
+			}
+		});
 	}
 };
 

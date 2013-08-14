@@ -5,8 +5,6 @@ $(function() {
 		type: 'POST',
 		url: 'modulos/conceptos/GetConceptos.php',
 		dataType: 'json',
-		//cache: false,
-		timeout: 10000,
 		
 		success: function(json) {
 			try{
@@ -139,9 +137,7 @@ $(function() {
 								 , am: _aplicaIMSS
 								 , ae: _aplicaEstatal
 							 },
-							 dataType: 'json',
-							 cache: false,
-							 timeout: 5000,
+							 dataType: 'json'
 							 
 							 beforeSend: function()
 							 {
@@ -197,7 +193,6 @@ $(function() {
 					url: 'modulos/conceptos/GetConceptosNomina.php',
 					data: {p: _tgt.parents('.block').attr('id')},
 					dataType: 'json',
-					timeout: 5000,
 					
 					beforeSend: function()
 					{
@@ -249,8 +244,7 @@ $(function() {
 				$.ajax({
 					type: 'POST',
 					url: 'modulos/conceptos/GetNaturalezasConcepto.php',
-					dataType: 'json',
-					timeout: 5000,
+					dataType: 'json'
 					
 					beforeSend: function()
 					{
@@ -285,12 +279,8 @@ $(function() {
 						$('select.#naturalezas-concepto').children('#load-option').remove();
 					}
 				});
-			}
-			/*
-			 * ELIMINA CONCEPTOS
-			*/
-			else if(_tgt.is('.elimina-concepto'))
-			{
+			} else if ( _tgt.is('.elimina-concepto') ) {
+
 				var _items = parseInt($(this).find('.items').text());
 				var _itemCounter = $(this).find('.items');
 				
@@ -312,12 +302,9 @@ $(function() {
 							url: 'modulos/conceptos/EliminaConcepto.php',
 							data: {p: $(_item).data('idProyecto'), c: $(_item).data('idConcepto')},
 							dataType: 'json',
-							cache: false,
 							async: false, // PETICION SINCRONA PARA NO PERDER LA REFERENCIA DE CADA ITEM
-							timeout: 5000,
 							
-							success: function(json)
-							{
+							success: function(json) {
 								try{
 									if(!json.success)
 									{
@@ -340,13 +327,12 @@ $(function() {
 			}
 	    });
 
-	$('.block-content')
-		.live('click', function(event)
-		{
+	$('.block-content').live('click', function(event) {
+
 			var _tgt = $(event.target);
 
-			if(_tgt.is('span') && _tgt.parent().is('.row-selector'))
-			{
+			if(_tgt.is('span') && _tgt.parent().is('.row-selector')) {
+
 		    	_tgt
 		    		.toggleClass('checked unchecked')
 		    		.parents('tr')
@@ -356,9 +342,9 @@ $(function() {
 		    		.prev()
 		    		.find('.items')
 		    		.text($(this).find('tr.selected').size());
-	    	}
-	    	else if(_tgt.is('span') && _tgt.parent().is('.row-status'))
-	    	{
+
+	    	} else if(_tgt.is('span') && _tgt.parent().is('.row-status')) {
+
 	    		var _idTipoAplica = null;
 	    		
 	    		if(_tgt.hasClass('aplica-interfaz'))
@@ -381,18 +367,14 @@ $(function() {
 	    			url: 'modulos/conceptos/SetAplicaConcepto.php',
 	    			data: {p: _tgt.parents('tr').data('idProyecto'), c: _tgt.parents('tr').data('idConcepto'), a: _idTipoAplica},
 	    			dataType: 'json',
-	    			cache: false,
-	    			timeout: 5000,
 	    			
-	    			success: function(json)
-	    			{
-	    				try{
-		    				if(!json.success)
-		    				{
+	    			success: function(json) {
+	    				try {
+		    				if ( ! json.success ) {
 		    					messageConsole.displayMessage(json.errorMessage, 'error');
 		    					return false;
 		    				}
-	    				} catch(e){
+	    				} catch(e) {
 	    					messageConsole.displayMessage('Error: ' + e.message, 'error');
 							return false;
 	    				}
@@ -400,13 +382,13 @@ $(function() {
 	    				var _aplicaTargets = '';
 	    				var _classSwitch = 'active';
 	    				
-	    				switch(_idTipoAplica)
-	    				{
-	    					case 1:{
+	    				switch( _idTipoAplica ) {
+	    					
+	    					case 1: {
 	    						_classSwitch = 'inactive';
 	    						break;
 	    					}
-	    					case 2:{
+	    					case 2: {
 	    						_tgt.parent()
 	    						.siblings('.row-status')
 	    						.children('.aplica-interfaz')
@@ -433,71 +415,5 @@ $(function() {
 	    			}
 	    		});
 	    	}
-		});
-	/*
-	var DROPDOWN = {
-		container: '',
-		sourceType: 'query',
-		queryURL: 'results.php',
-		params: {},
-		loadMessage: 'Cargando Opciones ...',
-		
-		fill: function()
-		{
-			var _dd = this;
-			
-			if(this.sourceType == 'query')
-			{
-				$.ajax({
-					type: 'GET',
-					url: this.queryURL,
-					data: this.params,
-					dataType: 'json',
-					
-					beforeSend: function()
-					{
-						$(_dd.container)
-						.attr('disabled', 'disabled')
-						.append('<option class="load-option">' + _dd.loadMessage + '</option>');
-					},
-					success: function(json)
-					{
-						if(!json.success)
-						{
-							$(_dd.container)
-							.append('<option class="error-option">Error al cargar opciones</option>');
-							return false;
-						}
-						
-						if(json.)
-						var _naturalezas = null;
-						
-						$.each(json.Naturalezas, function()
-						{
-							_naturalezas += '<option value="' + this.idTipoAplicacion + '">' + this.TipoAplicacion + '</option>';
-						});
-						
-						$('select.#naturalezas-concepto').append(_naturalezas).removeAttr('disabled');
-						
-					},
-					complete: function()
-					{
-						$(_dd.container).find('.load-option').remove();
-					}
-				});
-			}
-		},
-		noOptions: function()
-		{
-			
-		},
-		enable: function()
-		{
-			
-		},
-		disable: function()
-		{
-			
-		}
-	}*/
+	});
 });

@@ -23,8 +23,6 @@ var PRENOMINA = {
 			url: 'modulos/prenomina/GeneraPrenomina.php',
 			data: _params,
 			dataType: 'json',
-			cache: false,
-			//timeout: 
 			
 			beforeSend: function()
 			{
@@ -80,7 +78,7 @@ var PRENOMINA = {
 	},
 	borraPrenomina: function()
 	{
-		if(!confirm('La prenomina sera borrada, Continuar?'))
+		if ( !confirm('La prenomina sera borrada, Continuar?') )
 			return false;
 		
 		var _pn = this;
@@ -95,8 +93,6 @@ var PRENOMINA = {
 			url: 'modulos/prenomina/EliminaPrenomina.php',
 			data: {"in": PERIODOS.selectedItem.idNomina},
 			dataType: 'json',
-			cache: false,
-			timeout: 10000,
 			
 			beforeSend: function()
 			{
@@ -151,8 +147,6 @@ var PRENOMINA = {
 			url: 'modulos/prenomina/GetPrenomina.php',
 			data: {"in": PERIODOS.selectedItem.idNomina},
 			dataType: 'json',
-			cache: false,
-			timeout: 10000,
 			
 			beforeSend: function() {
 				_pn.clear();

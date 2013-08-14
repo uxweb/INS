@@ -5,8 +5,6 @@ $(function() {
 		type: 'POST',
 		url: 'modulos/almacenes/GetAlmacenesCosto.php',
 		dataType: 'json',
-		timeout: 5000,
-		//cache: false,
 		
 		success: function(json) {
 			try {
@@ -143,8 +141,6 @@ $(function() {
 									 , cc: _cuentaContable
 								 },
 								 dataType: 'json',
-								 timeout: 10000,
-								 cache: false,
 								 
 								 beforeSend: function()
 								 {
@@ -200,7 +196,6 @@ $(function() {
 					type: 'GET',
 					url: 'modulos/almacenes/GetTiposCosto.php',
 					dataType: 'json',
-					timeout: 5000,
 					
 					beforeSend: function()
 					{
@@ -240,7 +235,6 @@ $(function() {
 					url: 'modulos/almacenes/GetAlmacenesSAO.php',
 					data: {p: _idProyecto},
 					dataType: 'json',
-					timeout: 5000,
 					
 					beforeSend: function()
 					{
@@ -302,8 +296,6 @@ $(function() {
 							url: 'modulos/almacenes/EliminaAlmacen.php',
 							data: {ia: $(_item).data('idAlmacen')},
 							dataType: 'json',
-							cache: false,
-							timeout: 5000,
 							async: false, // PETICION SINCRONA PARA NO PERDER LA REFERENCIA DE CADA ITEM
 							
 							success: function(json)
@@ -357,8 +349,6 @@ $(function() {
 	    			url: 'modulos/almacenes/SetEstatusAlmacen.php',
 	    			data: {ia: _tgt.parents('tr').data('idAlmacen')},
 	    			dataType: 'json',
-	    			cache: false,
-	    			timeout: 5000,
 	    			
 	    			success: function(json)
 	    			{

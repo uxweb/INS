@@ -12,12 +12,9 @@ $(function() {
 			_cp = this;
 			
 			$.ajax({
-				type: 'GET',
 				url: this.getURL,
 				data: {},
 				dataType: 'json',
-				cache: false,
-				timeout: 10000,
 				
 				success: function(json) {
 					try {
@@ -60,8 +57,6 @@ $(function() {
 								url: _cp.setURL,
 								data: {p: _tgt.data('idProyecto'), c: _clave},
 								dataType: 'json',
-								cache: false,
-								timeout: 10000,
 								
 								success: function(json)
 								{

@@ -280,6 +280,7 @@
 	},
 	"file_history":
 	[
+		"/D/GitHub/INS/README",
 		"/C/AppServ/www/ControlRemesas/inc/DBConn.php",
 		"/C/AppServ/www/ControlRemesas/inc/js/general.js",
 		"/C/AppServ/www/ControlRemesas/inc/js/minified/general.js",
@@ -406,8 +407,7 @@
 		"/C/AppServ/www/ControlRemesas/modulos/pago/RegistraComprobantePago.php",
 		"/C/AppServ/www/ControlRemesas/modulos/pago/GetComprobantesPago.php",
 		"/C/AppServ/www/ControlRemesas/modulos/pago/GetListaCuentasBancarias.php",
-		"/C/AppServ/www/ControlRemesas/modulos/pago/RegistraPagoRemesa.php",
-		"/C/AppServ/www/ControlRemesas/ControlRemesas.sublime-project"
+		"/C/AppServ/www/ControlRemesas/modulos/pago/RegistraPagoRemesa.php"
 	],
 	"find":
 	{

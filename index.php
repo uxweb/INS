@@ -17,6 +17,9 @@
     <?php require_once 'inc/app_nav.php'; ?>
   </div>
   <!-- site-wrapper -->
-  <div id="message-console"><span id="console-message"></span><span id="console-toggler" class="open"></span></div>
+  <div id="message-console">
+    <span id="console-message"></span>
+    <span id="console-toggler" class="open"></span>
+  </div>
 </body>
 </html>

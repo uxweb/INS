@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"borde",
+				"border"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
 				"is_in",
 				"is_int"
 			],
@@ -176,10 +184,6 @@
 				"padding-top"
 			],
 			[
-				"bac",
-				"background-color"
-			],
-			[
 				"remove",
 				"removeFile"
 			],
@@ -235,6 +239,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "css/general.css",
+			"settings":
+			{
+				"buffer_size": 13520,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "inc/app_header.php",
+			"settings":
+			{
+				"buffer_size": 249,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -280,6 +300,11 @@
 	},
 	"file_history":
 	[
+		"/D/www/INS/inc/app_nav.php",
+		"/C/Users/Uziel/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Uziel/AppData/Roaming/Sublime Text 2/Packages/User/Distraction Free.sublime-settings",
+		"/D/www/ControlMaquinaria/ControlMaquinaria.sublime-workspace",
+		"/D/www/ControlMaquinaria/ControlMaquinaria.sublime-project",
 		"/D/www/INS/INS.sublime-workspace",
 		"/D/www/INS/INS.sublime-project",
 		"/D/GitHub/INS/js/almacenesCosto.js",
@@ -402,12 +427,7 @@
 		"/C/AppServ/www/mvc/index.php",
 		"/C/AppServ/www/ControlRemesas/test.php",
 		"/C/AppServ/www/mvc/includes/init.php",
-		"/C/AppServ/www/ControlRemesas/inc/js/fianzas.js",
-		"/C/AppServ/www/ControlRemesas/fianzas.php",
-		"/C/AppServ/www/ControlRemesas/modulos/test.php",
-		"/C/AppServ/www/mvc/views/blog_view.php",
-		"/C/AppServ/www/mvc/views/blog_index.php",
-		"/C/AppServ/www/mvc/application/controller_base.class.php"
+		"/C/AppServ/www/ControlRemesas/inc/js/fianzas.js"
 	],
 	"find":
 	{
@@ -425,6 +445,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"nav",
+			"logo",
+			"nav",
+			"img",
+			"8",
+			"nav",
 			"www",
 			"Drop",
 			"test",
@@ -546,13 +572,7 @@
 			"details",
 			"No se encontraron archivos",
 			"comprobantesCargados",
-			"GetComprobantesPago.php",
-			"uspResumenPagosRemesa",
-			"GetRemesasProyecto.php",
-			"GetListaDes",
-			"GetListaDestinatarios.php",
-			"eLIMINAdOCUMENTO",
-			"observaciones"
+			"GetComprobantesPago.php"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -580,8 +600,62 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "css/general.css",
+					"settings":
+					{
+						"buffer_size": 13520,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								587,
+								175
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 110.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "inc/app_header.php",
+					"settings":
+					{
+						"buffer_size": 249,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								249,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -636,7 +710,7 @@
 		[
 			[
 				"",
-				"/D/Dropbox/www/INS/INS.sublime-project"
+				"/D/www/ModulosSAO/ModulosSAO.sublime-project"
 			]
 		],
 		"width": 380.0

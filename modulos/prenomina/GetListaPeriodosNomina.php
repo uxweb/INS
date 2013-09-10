@@ -1,5 +1,5 @@
 <?php
-if($_POST)
+if($_GET)
 {
 	require_once("../../inc/DBConn.php");
 
@@ -8,7 +8,7 @@ if($_POST)
 	
 	$conn = modulosSAO();
 
-	if(!$conn) {
+	if( ! $conn ) {
 		$data['success'] = 0;
 		$data['errorMessage'] = 'No se pudo establecer una conexion con el servidor de Base de Datos';
 
@@ -16,9 +16,9 @@ if($_POST)
 		return;
 	}
 
-	$tsql = "{call [InterfazNominasSao].[uspListaPeriodosNomina](?)}";
+	$tsql = "{call [InterfazNominas].[uspListaPeriodosNomina](?)}";
 	
-	$params = array($_POST['p']);
+	$params = array($_GET['p']);
 	
 	$stmt = sqlsrv_query($conn, $tsql, $params);
 
@@ -45,9 +45,11 @@ if($_POST)
 		{
 			$UltimoAnio = $periodos->Anio;
 	
-			$data['PerNomina'][] = array('Anio' => $periodos->Anio,
-										 'Meses' => array(),
-										);
+			$data['PerNomina'][] =
+				array(
+					'Anio'  => $periodos->Anio,
+					'Meses' => array(),
+				);
 			
 			++$counterAnio;
 			$counterMes = 0;
@@ -58,16 +60,23 @@ if($_POST)
 		{
 			$UltimoMes = $periodos->Mes;
 	
-			$data['PerNomina'][$counterAnio-1]['Meses'][] = array('Mes' => $periodos->Mes, 'Periodos' => array());
+			$data['PerNomina'][$counterAnio-1]['Meses'][] =
+				array(
+					'Mes' 	   => $periodos->Mes,
+					'Periodos' => array()
+				);
 			
 			++$counterMes;
 		}
 	
-		$data['PerNomina'][$counterAnio-1]['Meses'][$counterMes-1]['Periodos'][] = array('idPeriodo' => $periodos->idPeriodo
-																					   , 'Periodo' => $periodos->Periodo
-																					   , 'idEstatus' => $periodos->idEstatus
-																					   , 'Estatus' => $periodos->Estatus
-																					   , 'idNomina' => $periodos->idNomina);
+		$data['PerNomina'][$counterAnio-1]['Meses'][$counterMes-1]['Periodos'][] =
+			array(
+				  'IDPeriodo' => $periodos->IDPeriodo
+				, 'Periodo' => $periodos->Periodo
+				, 'IDEstatus' => $periodos->IDEstatus
+				, 'Estatus' => $periodos->Estatus
+				, 'IDNomina' => $periodos->IDNomina
+			);
 	}
 	
 	sqlsrv_free_stmt($stmt);

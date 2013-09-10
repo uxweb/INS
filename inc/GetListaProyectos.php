@@ -36,7 +36,11 @@ else
 
 while($proyecto = sqlsrv_fetch_object($stmt))
 {
-	$data['Proyectos'][] = array('idProyecto'=>$proyecto->idProyecto, 'Nombre'=>$proyecto->NombreProyecto);
+	$data['Proyectos'][] =
+		array(
+			'IDProyecto'=>$proyecto->IDProyecto,
+			'Nombre'=>$proyecto->NombreProyecto
+		);
 }
 
 

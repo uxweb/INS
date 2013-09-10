@@ -16,7 +16,7 @@ if($_POST) {
 		return;
 	}
 	
-	$tsql = "{call [InterfazNominasSao].[uspRegistraPorcentajesFacturacion](?, ?, ?, ?, ?, ?)}";
+	$tsql = "{call [InterfazNominas].[uspRegistraPorcentajesFacturacion](?, ?, ?, ?, ?, ?)}";
 	
 	$params = array($_POST['p'], $_POST['v'], $_POST['im'], $_POST['ie'], $_POST['ia'], $_POST['iv']);
 	

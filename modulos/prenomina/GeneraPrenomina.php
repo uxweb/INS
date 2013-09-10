@@ -16,7 +16,7 @@ if($_POST) {
 		return;
 	}
 	
-	$tsql = "{call [InterfazNominasSao].[uspGeneraNomina](?, ?, ?, ?)}";
+	$tsql = "{call [InterfazNominas].[uspGeneraNomina](?, ?, ?, ?)}";
 	
 	$idNomina = 0;
 	$params = array(

@@ -14,9 +14,9 @@ if(!$conn) {
 	return;
 }
 
-$tsql = "{call [InterfazNominasSao].[uspListaAlmacenesSAO](?)}";
+$tsql = "{call [InterfazNominas].[uspListaAlmacenesSAO](?)}";
 
-$params = array($_POST['p']);
+$params = array($_GET['p']);
 
 $stmt = sqlsrv_query($conn, $tsql, $params);
 

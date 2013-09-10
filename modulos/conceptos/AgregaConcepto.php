@@ -16,7 +16,7 @@ if($_POST) {
 		return;
 	}
 	
-	$tsql = "{call [InterfazNominasSao].[uspAgregaConceptoCalculo](?, ?, ?, ?, ?, ?, ?, ?)}";
+	$tsql = "{call [InterfazNominas].[uspAgregaConceptoCalculo](?, ?, ?, ?, ?, ?, ?, ?)}";
 	
 	$params = array($_POST['p'], $_POST['c'], $_POST['nt'], $_POST['n'], $_POST['ai'], $_POST['af'], $_POST['am'], $_POST['ae']);
 	

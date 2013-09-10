@@ -1,5 +1,5 @@
 <?php
-if( isset($_POST['in']) ) {
+if( isset($_GET['in']) ) {
 	require_once("../../inc/DBConn.php");
 	
 	$data['success'] = 0;
@@ -15,9 +15,9 @@ if( isset($_POST['in']) ) {
 		return;
 	}
 	
-	$tsql = "{call [InterfazNominasSao].[uspPrenomina](?)}";
+	$tsql = "{call [InterfazNominas].[uspPrenomina](?)}";
 	
-	$params = array($_POST['in']);
+	$params = array($_GET['in']);
 	
 	$stmt = sqlsrv_query($conn, $tsql, $params);
 	
@@ -40,23 +40,25 @@ if( isset($_POST['in']) ) {
 		$data['Total'] += $prenom->ImporteTotalJornales;
 		$data['TotalPorDistribuir'] += $prenom->PorDistribuir;
 		
-		$data['Empleados'][] = array(  'idEmpleado' => $prenom->idEmpleadoNOM
-									 , 'CodigoEmpleado' => $prenom->CodigoEmpleado
-									 , 'NombreEmpleadoNOM' => $prenom->NombreNOM
-									 , 'FechaAltaNOM' => $prenom->FechaAltaNOM
-									 , 'FechaBajaNOM' => $prenom->FechaBajaNOM
-									 , 'NSSNOM' => $prenom->NSSNOM
-									 , 'RFCNOM' => $prenom->RFCNOM
-									 , 'CategoriaNOM' => $prenom->CategoriaNOM
-									 , 'ValorJornalNOM' => $prenom->ValorJornalNOM
-									 , 'NombreEmpleadoSAO' => $prenom->NombreSAO
-									 , 'NSSSAO' => $prenom->NSSSAO
-									 , 'RFCSAO' => $prenom->RFCSAO
-									 , 'CategoriaSAO' => $prenom->CategoriaSAO
-									 , 'ImporteTotal' => $prenom->ImporteTotal
-									 , 'PorDistribuir' => $prenom->PorDistribuir
-									 , 'Inconsistencias' => array()
-									);
+		$data['Empleados'][] =
+			array(
+				  'IDEmpleado'		  => $prenom->IDEmpleadoNOM
+				, 'CodigoEmpleado'    => $prenom->CodigoEmpleado
+				, 'NombreEmpleadoNOM' => $prenom->NombreNOM
+				, 'FechaAltaNOM' 	  => $prenom->FechaAltaNOM
+				, 'FechaBajaNOM' 	  => $prenom->FechaBajaNOM
+				, 'NSSNOM' 		   	  => $prenom->NSSNOM
+				, 'RFCNOM' 		      => $prenom->RFCNOM
+				, 'CategoriaNOM' 	  => $prenom->CategoriaNOM
+				, 'ValorJornalNOM'    => $prenom->ValorJornalNOM
+				, 'NombreEmpleadoSAO' => $prenom->NombreSAO
+				, 'NSSSAO' 		   	  => $prenom->NSSSAO
+				, 'RFCSAO' 		      => $prenom->RFCSAO
+				, 'CategoriaSAO' 	  => $prenom->CategoriaSAO
+				, 'ImporteTotal' 	  => $prenom->ImporteTotal
+				, 'PorDistribuir' 	  => $prenom->PorDistribuir
+				, 'Inconsistencias'   => array()
+			);
 	
 		$inconsistencias = array();
 		

@@ -16,7 +16,7 @@ if($_POST) {
 		return;
 	}
 	
-	$tsql = "{call [InterfazNominasSao].[uspEliminaPorcentajesFacturacion](?)}";
+	$tsql = "{call [InterfazNominas].[uspEliminaPorcentajesFacturacion](?)}";
 	
 	$params = array($_POST['ip']);
 	

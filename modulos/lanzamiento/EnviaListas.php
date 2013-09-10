@@ -16,7 +16,7 @@ if($_POST) {
 		return;
 	}
 	
-	$tsql = "{call [InterfazNominasSao].[uspEnviaListasAsistenciaSAO](?, ?)}";
+	$tsql = "{call [InterfazNominas].[uspEnviaListasAsistenciaSAO](?, ?)}";
 	
 	$params = array(  array(null, SQLSRV_PARAM_IN),
 					  array($_POST['idNom'], SQLSRV_PARAM_IN)

@@ -18,7 +18,7 @@ if(!$conn) {
 	return;
 }
 
-$tsql = "{call [InterfazNominasSao].[uspAlmacenesCosto]( ? )}";
+$tsql = "{call [InterfazNominas].[uspAlmacenesCosto]( ? )}";
 
 $params = array( array($_SESSION['usr'], SQLSRV_PARAM_IN, null, SQLSRV_SQLTYPE_VARCHAR(50)) );
 
@@ -39,28 +39,32 @@ $counter = 0;
 
 while( $almacenes = sqlsrv_fetch_object($stmt) ) {
 	
-	if( $UltimoProyecto !== $almacenes->idProyecto ) {
+	if( $UltimoProyecto !== $almacenes->IDProyecto ) {
 		
-		$UltimoProyecto = $almacenes->idProyecto;
+		$UltimoProyecto = $almacenes->IDProyecto;
 
-		$data['Proyectos'][] = array('idProyecto' => $almacenes->idProyecto,
-									 'Proyecto' => $almacenes->Proyecto,
-									 'Almacenes' => array()
-									);
+		$data['Proyectos'][] =
+			array(
+				'IDProyecto' => $almacenes->IDProyecto,
+				'Proyecto'   => $almacenes->Proyecto,
+				'Almacenes'  => array()
+			);
 		
 		//if( count($data['Proyectos']) > 1 )
 		$counter++;
 	}
 	
-	if( $almacenes->idAlmacen !== null ) {
+	if( $almacenes->IDAlmacen !== null ) {
 		
-		$data['Proyectos'][$counter - 1]['Almacenes'][] = array( 'idAlmacen' => $almacenes->idAlmacen,
-															 'Nombre' => $almacenes->Nombre,
-															 'TipoCosto' => $almacenes->TipoCosto,
-															 'NombreAlmacenSAO' => $almacenes->NombreAlmacenSAO,
-															 'CuentaContable' => $almacenes->CuentaContable,
-															 'EstaActivo' => $almacenes->EstaActivo
-														   );
+		$data['Proyectos'][$counter - 1]['Almacenes'][] =
+			array(
+				'IDAlmacen' 	   => $almacenes->IDAlmacen,
+				'Nombre' 		   => $almacenes->Nombre,
+				'TipoCosto' 	   => $almacenes->TipoCosto,
+				'NombreAlmacenSAO' => $almacenes->NombreAlmacenSAO,
+				'CuentaContable'   => $almacenes->CuentaContable,
+				'EstaActivo' 	   => $almacenes->EstaActivo
+			);
 	}
 }
 

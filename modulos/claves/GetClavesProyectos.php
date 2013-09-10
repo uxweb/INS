@@ -18,13 +18,13 @@ if(!$conn) {
 	return;
 }
 
-$tsql = "{call [InterfazNominasSao].[uspClavesTrabajadoresProyecto]( ? )}";
+$tsql = "{call [InterfazNominas].[uspClavesTrabajadoresProyecto]( ? )}";
 
 $params = array( array($_SESSION['usr'], SQLSRV_PARAM_IN, null, SQLSRV_SQLTYPE_VARCHAR(50)) );
 
 $stmt = sqlsrv_query($conn, $tsql, $params);
 
-if(!$stmt) {
+if( ! $stmt) {
 	$data['success'] = 0;
 	$data['errorMessage'] = getErrorMessage();
 
@@ -38,7 +38,13 @@ $counter = 0;
 
 while($claves = sqlsrv_fetch_object($stmt)) {
 	
-	$data['Claves'][] = array('idProyecto' => $claves->idProyecto, 'Proyecto' => $claves->Proyecto, 'Clave' => $claves->Clave);
+	$data['Claves'][] =
+		array(
+			'IDProyecto' => $claves->IDProyecto,
+			'Proyecto' => $claves->Proyecto,
+			'Clave' => $claves->Clave
+		);
+
 	++$counter;
 }
 

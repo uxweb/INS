@@ -15,9 +15,10 @@ if(!$conn) {
 }
 
 $tsql = "SELECT
-		   [idTipoCosto]
-		 , [TipoCosto]
-		 FROM [InterfazNominasSao].[TiposCosto]";
+			   [IDTipoCosto]
+			 , [TipoCosto]
+		 FROM
+		 	[InterfazNominas].[TiposCosto]";
 
 $stmt = sqlsrv_query($conn, $tsql);
 
@@ -35,9 +36,11 @@ else
 
 while($tiposcosto = sqlsrv_fetch_object($stmt))
 {
-	$data['TiposCosto'][] = array( 'idTipoCosto' => $tiposcosto->idTipoCosto,
-								   'TipoCosto' => $tiposcosto->TipoCosto
-								 );
+	$data['TiposCosto'][] =
+		array(
+			'IDTipoCosto' => $tiposcosto->IDTipoCosto,
+			'TipoCosto'   => $tiposcosto->TipoCosto
+		);
 }
 
 sqlsrv_free_stmt($stmt);

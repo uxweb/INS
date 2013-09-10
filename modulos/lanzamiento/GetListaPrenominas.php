@@ -14,9 +14,9 @@ if(!$conn) {
 	return;
 }
 
-$tsql = "{call [InterfazNominasSao].[uspListaPrenominas](?)}";
+$tsql = "{call [InterfazNominas].[uspListaPrenominas](?)}";
 
-$params = array($_POST['p']);
+$params = array($_GET['p']);
 
 $stmt = sqlsrv_query($conn, $tsql, $params);
 
@@ -45,9 +45,11 @@ while($periodos = sqlsrv_fetch_object($stmt))
 	{
 		$UltimoAnio = $periodos->Anio;
 
-		$data['PerNomina'][] = array('Anio' => $periodos->Anio,
-									  'Meses' => array(),
-									 );
+		$data['PerNomina'][] =
+			array(
+				'Anio' => $periodos->Anio,
+				'Meses' => array(),
+			);
 		
 		++$counterAnio;
 		$counterMes = 0;
@@ -58,16 +60,23 @@ while($periodos = sqlsrv_fetch_object($stmt))
 	{
 		$UltimoMes = $periodos->Mes;
 
-		$data['PerNomina'][$counterAnio-1]['Meses'][] = array('Mes' => $periodos->Mes, 'Periodos' => array());
+		$data['PerNomina'][$counterAnio-1]['Meses'][] =
+			array(
+				'Mes' => $periodos->Mes,
+				'Periodos' => array()
+			);
 		
 		++$counterMes;
 	}
 
-	$data['PerNomina'][$counterAnio-1]['Meses'][$counterMes-1]['Periodos'][] = array( 'idPeriodo' => $periodos->idPeriodo
-																				     , 'Periodo' => $periodos->Periodo
-																				     , 'idEstatus' => $periodos->idEstatus
-																				     , 'Estatus' => $periodos->Estatus
-																				     , 'idNomina' => $periodos->idNomina);
+	$data['PerNomina'][$counterAnio-1]['Meses'][$counterMes-1]['Periodos'][] =
+		array(
+			  'IDPeriodo' => $periodos->IDPeriodo
+			, 'Periodo'   => $periodos->Periodo
+			, 'IDEstatus' => $periodos->IDEstatus
+			, 'Estatus'   => $periodos->Estatus
+			, 'IDNomina'  => $periodos->IDNomina
+		);
 }
 
 sqlsrv_free_stmt($stmt);

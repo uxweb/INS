@@ -18,7 +18,7 @@ if(!$conn) {
 	return;
 }
 
-$tsql = "{call [InterfazNominasSao].[uspPorcentajesFacturacion]( ? )}";
+$tsql = "{call [InterfazNominas].[uspPorcentajesFacturacion]( ? )}";
 
 $params = array( array($_SESSION['usr'], SQLSRV_PARAM_IN, null, SQLSRV_SQLTYPE_VARCHAR(50)) );
 
@@ -39,26 +39,30 @@ $counter = 0;
 
 while( $conceptos = sqlsrv_fetch_object($stmt) ) {
 	
-	if( $UltimoProyecto !== $conceptos->idProyecto ) {
-		$UltimoProyecto = $conceptos->idProyecto;
+	if( $UltimoProyecto !== $conceptos->IDProyecto ) {
+		$UltimoProyecto = $conceptos->IDProyecto;
 
-		$data['Proyectos'][] = array('idProyecto' => $conceptos->idProyecto,
-									 'Proyecto' => $conceptos->Proyecto,
-									 'Porcentajes' => array()
-									);
+		$data['Proyectos'][] =
+			array(
+				'IDProyecto'  => $conceptos->IDProyecto,
+				'Proyecto'    => $conceptos->Proyecto,
+				'Porcentajes' => array()
+			);
 		
 		//if( count($data['Proyectos']) > 1 )
 		$counter++;
 	}
 	if( $conceptos->Vigencia !== null ) {
 		
-		$data['Proyectos'][$counter - 1]['Porcentajes'][] = array( 'idPorcentaje' => $conceptos->idPorcentaje,
-															 'Vigencia' => $conceptos->Vigencia,
-															 'IMSS' => $conceptos->IMSS,
-															 'ImpuestoEstatal' => $conceptos->ImpuestoEstatal,
-															 'Administracion' => $conceptos->Administracion,
-															 'IVA' => $conceptos->IVA
-														   );
+		$data['Proyectos'][$counter - 1]['Porcentajes'][] =
+			array(
+				'IDPorcentaje'    => $conceptos->IDPorcentaje,
+				'Vigencia' 	      => $conceptos->Vigencia,
+				'IMSS' 		   	  => $conceptos->IMSS,
+				'ImpuestoEstatal' => $conceptos->ImpuestoEstatal,
+				'Administracion'  => $conceptos->Administracion,
+				'IVA' 			  => $conceptos->IVA
+			);
 	}
 }
 

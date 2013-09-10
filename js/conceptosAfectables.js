@@ -2,7 +2,6 @@ $(function() {
 	
 	// CARGA LOS CONCEPTOS DE CADA PROYECTO
 	$.ajax({
-		type: 'POST',
 		url: 'modulos/conceptos/GetConceptos.php',
 		dataType: 'json',
 		
@@ -29,7 +28,7 @@ $(function() {
 			$.each(json.Proyectos, function() {
 				var _proyecto = this;
 				
-				_blocks = $('<div id="' + this.idProyecto + '" class="block">'
+				_blocks = $('<div id="' + this.IDProyecto + '" class="block">'
 			          	+    '<h3 class="block-title">' + this.Proyecto + '</h3>'
 			          	+      '<ul class="menu hz-menu">'
 			          	+		 '<li><span class="icon add"></span><span class="text agrega-concepto">Agregar Concepto</span></li>'
@@ -69,7 +68,7 @@ $(function() {
 	      			+	'<td class="row-status"><span class="aplica-estatal ' + (this.AplicaEstatal == 1 ? 'active' : 'inactive') + '"></span></td>'
 	      			+ '</tr>'
       				)
-      				.data({'idProyecto': _proyecto.idProyecto, 'idConcepto': this.idConcepto})
+      				.data({'IDProyecto': _proyecto.IDProyecto, 'IDConcepto': this.IDConcepto})
       				.appendTo(_tableContent);
 				});
 				
@@ -128,16 +127,17 @@ $(function() {
 						$.ajax({
 							type: 'POST',
 							url: 'modulos/conceptos/AgregaConcepto.php',
-							data: {p: _idProyecto
-								 , c: _idConceptoNomina
-								 , n: _nombreConcepto
-								 , nt: _naturaleza
-								 , ai: _aplicaInterfaz
-								 , af: _aplicaFacturacion
-								 , am: _aplicaIMSS
-								 , ae: _aplicaEstatal
+							data: {
+								  p: _idProyecto
+								, c: _idConceptoNomina
+								, n: _nombreConcepto
+								, nt: _naturaleza
+								, ai: _aplicaInterfaz
+								, af: _aplicaFacturacion
+								, am: _aplicaIMSS
+								, ae: _aplicaEstatal
 							 },
-							 dataType: 'json'
+							 dataType: 'json',
 							 
 							 beforeSend: function()
 							 {
@@ -189,7 +189,6 @@ $(function() {
 				});
 				
 				$.ajax({
-					type: 'POST',
 					url: 'modulos/conceptos/GetConceptosNomina.php',
 					data: {p: _tgt.parents('.block').attr('id')},
 					dataType: 'json',
@@ -221,7 +220,7 @@ $(function() {
 							
 							$.each(this.Conceptos, function()
 							{
-								_conceptos += '<option value="' + this.idConcepto+ '">' + this.Concepto + '</option>';
+								_conceptos += '<option value="' + this.IDConcepto+ '">' + this.Concepto + '</option>';
 							});
 							
 							_conceptos += '</optgroup>';
@@ -242,9 +241,8 @@ $(function() {
 				});
 				
 				$.ajax({
-					type: 'POST',
 					url: 'modulos/conceptos/GetNaturalezasConcepto.php',
-					dataType: 'json'
+					dataType: 'json',
 					
 					beforeSend: function()
 					{
@@ -269,7 +267,7 @@ $(function() {
 						
 						$.each(json.Naturalezas, function()
 						{
-							_naturalezas += '<option value="' + this.idNaturaleza + '">' + this.Naturaleza + '</option>';
+							_naturalezas += '<option value="' + this.IDNaturaleza + '">' + this.Naturaleza + '</option>';
 						});
 						
 						$('select.#naturalezas-concepto').append(_naturalezas).removeAttr('disabled');
@@ -300,7 +298,7 @@ $(function() {
 						$.ajax({
 							type: 'POST',
 							url: 'modulos/conceptos/EliminaConcepto.php',
-							data: {p: $(_item).data('idProyecto'), c: $(_item).data('idConcepto')},
+							data: {p: $(_item).data('IDProyecto'), c: $(_item).data('IDConcepto')},
 							dataType: 'json',
 							async: false, // PETICION SINCRONA PARA NO PERDER LA REFERENCIA DE CADA ITEM
 							
@@ -365,7 +363,7 @@ $(function() {
 	    		$.ajax({
 	    			type: 'POST',
 	    			url: 'modulos/conceptos/SetAplicaConcepto.php',
-	    			data: {p: _tgt.parents('tr').data('idProyecto'), c: _tgt.parents('tr').data('idConcepto'), a: _idTipoAplica},
+	    			data: {p: _tgt.parents('tr').data('IDProyecto'), c: _tgt.parents('tr').data('IDConcepto'), a: _idTipoAplica},
 	    			dataType: 'json',
 	    			
 	    			success: function(json) {

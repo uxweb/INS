@@ -2,7 +2,6 @@ $(function() {
 	
 	// CARGA LOS ALMACENES DE CADA PROYECTO
 	$.ajax({
-		type: 'POST',
 		url: 'modulos/almacenes/GetAlmacenesCosto.php',
 		dataType: 'json',
 		
@@ -31,7 +30,7 @@ $(function() {
 				
 				var _proyecto = this;
 				
-				_blocks = $('<div id="' + this.idProyecto + '" class="block">'
+				_blocks = $('<div id="' + this.IDProyecto + '" class="block">'
 			          	+    '<h3 class="block-title">' + this.Proyecto + '</h3>'
 			          	+      '<ul class="menu hz-menu">'
 			          	+		 '<li><span class="icon add"></span><span class="text agrega-concepto">Agregar Almacen</span></li>'
@@ -69,7 +68,7 @@ $(function() {
 	      			+	'<td class="row-status"><span class="aplica-interfaz ' + (this.EstaActivo == 1 ? 'active' : 'inactive') + '"></span></td>'
 	      			+ '</tr>'
       				)
-      				.data({'idProyecto': _proyecto.idProyecto, 'idAlmacen': this.idAlmacen})
+      				.data({'IDProyecto': _proyecto.IDProyecto, 'IDAlmacen': this.IDAlmacen})
       				.appendTo(_tableContent);
 				});
 				
@@ -193,7 +192,6 @@ $(function() {
 				});
 				
 				$.ajax({
-					type: 'GET',
 					url: 'modulos/almacenes/GetTiposCosto.php',
 					dataType: 'json',
 					
@@ -216,7 +214,7 @@ $(function() {
 	
 							$.each(json.TiposCosto, function()
 							{
-								_tiposCosto += '<option value="' + this.idTipoCosto + '">' + this.TipoCosto + '</option>';
+								_tiposCosto += '<option value="' + this.IDTipoCosto + '">' + this.TipoCosto + '</option>';
 							});
 							
 							$('select.#tipos-costo').append(_tiposCosto).removeAttr('disabled');
@@ -231,7 +229,6 @@ $(function() {
 				});
 				
 				$.ajax({
-					type: 'POST',
 					url: 'modulos/almacenes/GetAlmacenesSAO.php',
 					data: {p: _idProyecto},
 					dataType: 'json',
@@ -259,7 +256,7 @@ $(function() {
 						
 						$.each(json.AlmacenesSAO, function()
 						{
-							_almacenes += '<option value="' + this.idAlmacen + '">' + this.Almacen + '</option>';
+							_almacenes += '<option value="' + this.IDAlmacen + '">' + this.Almacen + '</option>';
 						});
 						
 						$('select.#almacenes-sao').append(_almacenes).removeAttr('disabled');
@@ -347,7 +344,7 @@ $(function() {
 	    		$.ajax({
 	    			type: 'POST',
 	    			url: 'modulos/almacenes/SetEstatusAlmacen.php',
-	    			data: {ia: _tgt.parents('tr').data('idAlmacen')},
+	    			data: {ia: _tgt.parents('tr').data('IDAlmacen')},
 	    			dataType: 'json',
 	    			
 	    			success: function(json)

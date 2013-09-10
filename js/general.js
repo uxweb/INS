@@ -62,71 +62,6 @@ $(function() {
 			}
 		}
 	);
-
-	/*var LP = {
-		container: '#lista-proyectos',
-		dataURL: 'inc/GetListaProyectos.php',
-		
-		init: function()
-		{
-			var _lp = this;
-			
-			// hacer request ajax para obtener la lista de proyectos
-			$.ajax({
-				type: 'GET',
-				url: _lp.dataURL,
-				dataType: 'json',
-				cache: false,
-				
-				success: function(json)
-				{
-					if(json.success == 0)
-					{
-						messageConsole.displayMessage(json.errorMessage, 'error');
-					}
-					else
-					{
-						$.each(json.Proyectos, function()
-						{
-							$('<li><a class="proyecto" href="' + this.idProyecto + '">' + this.Nombre + '</a></li>')
-							.appendTo(_lp.container + ' ul');
-						});
-						
-						$(_lp.container).hover(function(){
-							$(this).children('ul').stop(true, true).slideDown('fast');
-							}, function(){
-								$(this).children('ul').slideUp('normal');
-							});
-		
-							$('#lista-proyectos')
-							.click(function(e)
-							{
-								var _tgt = $(e.target);
-
-								if(_tgt.is('a.proyecto'))
-								{
-									// ESTABLECER COMO PROYECTO SELECCIONADO
-									_tgt.parent().parent().find('a').removeClass('selected');
-									_tgt.addClass('selected');
-		
-									$('#proyecto-activo')
-									.text(_tgt.text());
-									
-									if(getURL() == 'claves_trabajadores.html')
-									{
-										console.log('solo en claves');
-									}
-								}
-								
-								$(this).children('ul').slideToggle('fast');
-								
-								e.preventDefault();
-							});
-					}
-				}
-			});
-		},
-	};*/
 	
 	// EVITA EL EVENTO SUBMIT EN LOS FORMULARIOS
 	$('form')
@@ -134,7 +69,6 @@ $(function() {
 		 event.preventDefault();
 	 });
 
-	//LP.init();
 	messageConsole.init();
 	
 });

@@ -10,7 +10,7 @@ var PRENOMINA = {
 		var _params = {p: null, ip: null, r: null};
 
 		_params.p = PROYECTOS.selectedItem;
-		_params.ip = PERIODOS.selectedItem.idPeriodo;
+		_params.ip = PERIODOS.selectedItem.IDPeriodo;
 		_params.r = $(OPCIONES.container).find('#recalcula').is(':enabled:checked') ? 1 : 0;
 		
 		LIGHTBOX.title = 'Generando Pren&oacute;mina ...';
@@ -45,8 +45,8 @@ var PRENOMINA = {
 				messageConsole.displayMessage('La pren&oacute;mina se gener&oacute; correctamente.', 'success');
 				
 				// ACTUALIZA LA REFERENCIA DE EL PERIODO
-				PERIODOS.selectedItem.idEstatus = 1;
-				PERIODOS.selectedItem.idNomina = json.idNomina;
+				PERIODOS.selectedItem.IDEstatus = 1;
+				PERIODOS.selectedItem.IDNomina = json.IDNomina;
 				
 				// ACTUALIZA EL ICONO Y MENSAJE DE ESTATUS DEL PERIODO
 				$(PERIODOS.container)
@@ -54,12 +54,12 @@ var PRENOMINA = {
 				.prev('.icon')
 				.removeClass('no-generada').addClass('generada').attr({'title': 'Generada', 'alt': 'Generada'})
 				.parent()
-				.data({'idEstatus': PERIODOS.selectedItem.idEstatus, 'idNomina': PERIODOS.selectedItem.idNomina});
+				.data({'IDEstatus': PERIODOS.selectedItem.IDEstatus, 'idNomina': PERIODOS.selectedItem.IDNomina});
 				
 				
 				// HABILITA LAS OPCIONES
 				var elements = '';
-				if(PERIODOS.selectedItem.idEstatus == 1)
+				if(PERIODOS.selectedItem.IDEstatus == 1)
 					elements = '#borra-nomina, #genera-nomina, #consulta-nomina';
 				else
 					elements = '#genera-nomina';
@@ -91,7 +91,7 @@ var PRENOMINA = {
 		$.ajax({
 			type: 'POST',
 			url: 'modulos/prenomina/EliminaPrenomina.php',
-			data: {"in": PERIODOS.selectedItem.idNomina},
+			data: {"in": PERIODOS.selectedItem.IDNomina},
 			dataType: 'json',
 			
 			beforeSend: function()
@@ -115,8 +115,8 @@ var PRENOMINA = {
 				messageConsole.displayMessage('La pren&oacute;mina se borr&oacute; correctamente.', 'success');
 				
 				// ACTUALIZA LAS REFERENCIAS DE EL PERIODO
-				PERIODOS.selectedItem.idEstatus = 0;
-				PERIODOS.selectedItem.idNomina = null;
+				PERIODOS.selectedItem.IDEstatus = 0;
+				PERIODOS.selectedItem.IDNomina = null;
 				
 				// ACTUALIZA ICONO Y MENSAJE DE ESTATUS DEL PERIODO
 				$(PERIODOS.container)
@@ -124,7 +124,7 @@ var PRENOMINA = {
 				.prev('.icon')
 				.removeClass('generada').addClass('no-generada').attr({'title': 'No Generada', 'alt': 'No Generada'})
 				.parent()
-				.data({'idEstatus': PERIODOS.selectedItem.idEstatus, 'idNomina': PERIODOS.selectedItem.idNomina});
+				.data({'idEstatus': PERIODOS.selectedItem.idEstatus, 'idNomina': PERIODOS.selectedItem.IDNomina});
 				
 				// DESHABILITA BORRAR Y CONSULTAR PERIODO
 				$(OPCIONES.container).find('#borra-nomina, #consulta-nomina').attr('disabled', 'disabled').addClass('disabled');
@@ -143,9 +143,8 @@ var PRENOMINA = {
 		var _pn = this;
 		
 		$.ajax({
-			type: 'POST',
 			url: 'modulos/prenomina/GetPrenomina.php',
-			data: {"in": PERIODOS.selectedItem.idNomina},
+			data: {"in": PERIODOS.selectedItem.IDNomina},
 			dataType: 'json',
 			
 			beforeSend: function() {
@@ -397,9 +396,9 @@ $(function()
 		
 		var elements = '';
 		
-		if(PERIODOS.selectedItem.idEstatus == 1)
+		if(PERIODOS.selectedItem.IDEstatus == 1)
 			elements = '#borra-nomina, #genera-nomina, #consulta-nomina';
-		else if(PERIODOS.selectedItem.idEstatus == 0)
+		else if(PERIODOS.selectedItem.IDEstatus == 0)
 			elements = '#genera-nomina';
 		
         OPCIONES.enable(elements);

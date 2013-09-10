@@ -14,7 +14,7 @@ if(!$conn) {
 	return;
 }
 
-$tsql = "{call [InterfazNominasSao].[uspManejaClaveTrabajadores](?, ?)}";
+$tsql = "{call [InterfazNominas].[uspManejaClaveTrabajadores](?, ?)}";
 
 $params = array($_POST['p'], $_POST['c']);
 

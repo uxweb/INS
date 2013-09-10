@@ -16,7 +16,7 @@ if($_POST) {
 		return;
 	}
 	
-	$tsql = "{call [InterfazNominasSao].[uspEliminaNomina](?)}";
+	$tsql = "{call [InterfazNominas].[uspEliminaNomina](?)}";
 	
 	$params = array($_POST['in']);
 	

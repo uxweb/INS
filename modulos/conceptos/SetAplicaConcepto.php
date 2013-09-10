@@ -16,7 +16,7 @@ if($_POST) {
 		return;
 	}
 	
-	$tsql = "{call [InterfazNominasSao].[uspCambiaAplicaConcepto](?, ?, ?)}";
+	$tsql = "{call [InterfazNominas].[uspCambiaAplicaConcepto](?, ?, ?)}";
 	
 	$params = array($_POST['p'], $_POST['c'], $_POST['a']);
 	

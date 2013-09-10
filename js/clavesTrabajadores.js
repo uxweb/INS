@@ -37,7 +37,7 @@ $(function() {
 					$.each(json.Claves, function() {
 						$('<tr><th>' + this.Proyecto + '</th><td class="editable"><input type="text" class="inputtext" value="' + this.Clave + '" /></td><td class="editable"><input type="button" class="button aceptar" value="Guardar"/></td></tr>')
 						.find(':button')
-						.data('idProyecto', this.idProyecto)
+						.data('IDProyecto', this.IDProyecto)
 						.end()
 						.appendTo(_cp.container);
 					});
@@ -55,7 +55,7 @@ $(function() {
 							$.ajax({
 								type: 'POST',
 								url: _cp.setURL,
-								data: {p: _tgt.data('idProyecto'), c: _clave},
+								data: {p: _tgt.data('IDProyecto'), c: _clave},
 								dataType: 'json',
 								
 								success: function(json)

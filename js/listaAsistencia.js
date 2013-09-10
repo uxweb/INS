@@ -10,7 +10,7 @@ var LISTAASISTENCIA = {
 	{
 		_la = this;
 		
-		var params = {'in': PERIODOS.selectedItem.idNomina, 'r': null};
+		var params = {'in': PERIODOS.selectedItem.IDNomina, 'r': null};
 		
 		params.r = $(OPCIONES.container).find('#recalcula').is(':enabled:checked') ? 1 : 0;
 
@@ -47,7 +47,7 @@ var LISTAASISTENCIA = {
 				messageConsole.displayMessage('Las listas de asistencia se generaron correctamente.', 'success');
 				
 				// ACTUALIZA LA REFERENCIA DE EL PERIODO
-				PERIODOS.selectedItem.idEstatus = 1;
+				PERIODOS.selectedItem.IDEstatus = 1;
 				
 				// ACTUALIZA EL ICONO Y MENSAJE DE ESTATUS DEL PERIODO
 				$(PERIODOS.container)
@@ -55,12 +55,12 @@ var LISTAASISTENCIA = {
 				.prev('.icon')
 				.removeClass('no-generada').addClass('generada').attr({'title': 'L.A. Generadas', 'alt': 'L.A. Generadas'})
 				.parent()
-				.data('idEstatus', PERIODOS.selectedItem.idEstatus);
+				.data('idEstatus', PERIODOS.selectedItem.IDEstatus);
 				
 				
 				// HABILITA LAS OPCIONES
 				var elements = '';
-				if( PERIODOS.selectedItem.idEstatus == 1 )
+				if( PERIODOS.selectedItem.IDEstatus == 1 )
 					elements = '#borra-listas, #genera-listas, #consulta-listas';
 				else
 					elements = '#genera-listas';
@@ -85,7 +85,7 @@ var LISTAASISTENCIA = {
 		$.ajax({
 			type: 'POST',
 			url: 'modulos/lanzamiento/EliminaListas.php',
-			data: {'in': PERIODOS.selectedItem.idNomina},
+			data: {'in': PERIODOS.selectedItem.IDNomina},
 			dataType: 'json',
 			
 			beforeSend: function()
@@ -110,7 +110,7 @@ var LISTAASISTENCIA = {
 				messageConsole.displayMessage('Las listas de asistencia se borraron correctamente.', 'success');
 				
 				// ACTUALIZA LA REFERENCIA DE EL PERIODO
-				PERIODOS.selectedItem.idEstatus = 0;
+				PERIODOS.selectedItem.IDEstatus = 0;
 				
 				// ACTUALIZA EL ICONO Y MENSAJE DE ESTATUS DEL PERIODO
 				$(PERIODOS.container)
@@ -123,7 +123,7 @@ var LISTAASISTENCIA = {
 				
 				// HABILITA LAS OPCIONES
 				var elements = '';
-				if(PERIODOS.selectedItem.idEstatus == 1)
+				if(PERIODOS.selectedItem.IDEstatus == 1)
 					elements = '#borra-listas, #genera-listas, #consulta-listas';
 				else
 					elements = '#genera-listas';
@@ -142,9 +142,8 @@ var LISTAASISTENCIA = {
 		var _la = this;
 		
 		$.ajax({
-			type: 'POST',
 			url: 'modulos/lanzamiento/GetAsistenciaEmpleados.php',
-			data: {'in': PERIODOS.selectedItem.idNomina},
+			data: {'in': PERIODOS.selectedItem.IDNomina},
 			dataType: 'json',
 			
 			beforeSend: function()
@@ -174,7 +173,7 @@ var LISTAASISTENCIA = {
 				
 				$.each(json.DiasPeriodo.Dias, function()
 				{
-					headers += '<th class="dia" idLista="' + this.idListaAsistencia + '">' + this.Dia + '</br>' + this.Fecha + '</th>';
+					headers += '<th class="dia" idLista="' + this.IDListaAsistencia + '">' + this.Dia + '</br>' + this.Fecha + '</th>';
 				})
 				
 				// GENERA EL CUERPO DE LA TABLA
@@ -269,7 +268,7 @@ var LISTAASISTENCIA = {
 			type: 'POST',
 			url: 'modulos/lanzamiento/EnviaListas.php',
 			data: {
-				idNom: PERIODOS.selectedItem.idNomina
+				idNom: PERIODOS.selectedItem.IDNomina
 			},
 			dataType: 'json',
 			
@@ -317,9 +316,9 @@ $(function(){
 
 		var elements = '';
 		
-		if(PERIODOS.selectedItem.idEstatus == 1)
+		if(PERIODOS.selectedItem.IDEstatus == 1)
 			elements = '#borra-listas, #genera-listas, #consulta-listas';
-		else if(PERIODOS.selectedItem.idEstatus == 0)
+		else if(PERIODOS.selectedItem.IDEstatus == 0)
 			elements = '#genera-listas';
 		
         OPCIONES.enable(elements);

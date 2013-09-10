@@ -18,7 +18,7 @@ if(!$conn) {
 	return;
 }
 
-$tsql = "{call [InterfazNominasSao].[uspConceptosCalculo]( ? )}";
+$tsql = "{call [InterfazNominas].[uspConceptosCalculo]( ? )}";
 
 $params = array( array($_SESSION['usr'], SQLSRV_PARAM_IN, null, SQLSRV_SQLTYPE_VARCHAR(50)) );
 
@@ -41,30 +41,34 @@ $counter = 0;
 
 while( $conceptos = sqlsrv_fetch_object($stmt) ) {
 	
-	if( $UltimoProyecto !== $conceptos->idProyecto ) {
+	if( $UltimoProyecto !== $conceptos->IDProyecto ) {
 		
-		$UltimoProyecto = $conceptos->idProyecto;
+		$UltimoProyecto = $conceptos->IDProyecto;
 
-		$data['Proyectos'][] = array( 'idProyecto' => $conceptos->idProyecto,
-									  'Proyecto' => $conceptos->Proyecto,
-									  'Conceptos' => array()
-									);
+		$data['Proyectos'][] =
+			array(
+				'IDProyecto' => $conceptos->IDProyecto,
+				'Proyecto'   => $conceptos->Proyecto,
+				'Conceptos'  => array()
+			);
 		
 		//if( count($data['Proyectos']) > 0 )
 			
 		$counter++;
 	}
 	
-	if( $conceptos->idConceptoNOM !== null ) {
+	if( $conceptos->IDConceptoNOM !== null ) {
 		
-		$data['Proyectos'][$counter - 1]['Conceptos'][] = array('idConcepto' => $conceptos->idConceptoNOM,
-															 'Concepto' => $conceptos->Concepto,
-															 'Naturaleza' => $conceptos->Naturaleza,
-															 'AplicaInterfaz' => $conceptos->AplicaInterfaz,
-															 'AplicaFacturacion' => $conceptos->AplicaFacturacion,
-															 'AplicaIMSS' => $conceptos->AplicaIMSS,
-															 'AplicaEstatal' => $conceptos->AplicaEstatal
-														   );
+		$data['Proyectos'][$counter - 1]['Conceptos'][] =
+			array(
+				'IDConcepto' 		=> $conceptos->IDConceptoNOM,
+				'Concepto' 			=> $conceptos->Concepto,
+				'Naturaleza' 		=> $conceptos->Naturaleza,
+				'AplicaInterfaz' 	=> $conceptos->AplicaInterfaz,
+				'AplicaFacturacion' => $conceptos->AplicaFacturacion,
+				'AplicaIMSS' 		=> $conceptos->AplicaIMSS,
+				'AplicaEstatal' 	=> $conceptos->AplicaEstatal
+			);
 	}
 }
 

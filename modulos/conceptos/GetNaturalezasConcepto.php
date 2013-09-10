@@ -15,10 +15,12 @@ if(!$conn) {
 }
 
 $tsql = "SELECT
-		   [idNaturaleza]
-		 , [Naturaleza]
-		 FROM [InterfazNominasSao].[TiposNaturaleza]
-		 ORDER BY [Naturaleza]";
+			   [IDNaturaleza]
+			 , [Naturaleza]
+		 FROM
+		 	[InterfazNominas].[TiposNaturaleza]
+		 ORDER BY
+		 	[Naturaleza]";
 
 $stmt = sqlsrv_query($conn, $tsql);
 
@@ -36,7 +38,11 @@ else
 
 while($naturaleza = sqlsrv_fetch_object($stmt))
 {
-	$data['Naturalezas'][] = array('idNaturaleza' => $naturaleza->idNaturaleza, 'Naturaleza' => $naturaleza->Naturaleza);
+	$data['Naturalezas'][] =
+		array(
+			'IDNaturaleza' => $naturaleza->IDNaturaleza,
+			'Naturaleza'   => $naturaleza->Naturaleza
+		);
 }
 
 sqlsrv_free_stmt($stmt);

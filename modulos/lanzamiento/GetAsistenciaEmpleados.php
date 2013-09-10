@@ -14,13 +14,13 @@ if(!$conn) {
 	return;
 }
 
-$tsql = "{call [InterfazNominasSao].[uspDiasNomina](?)}";
+$tsql = "{call [InterfazNominas].[uspDiasNomina](?)}";
 
-$params = array($_POST['in']);
+$params = array($_GET['in']);
 
 $stmt = sqlsrv_query($conn, $tsql, $params);
 
-if(!$stmt) {
+if( ! $stmt) {
 	$data['success'] = 0;
 	$data['errorMessage'] = getErrorMessage();
 
@@ -37,20 +37,23 @@ $diasPeriodo = array();
 $counter = 0;
 while($dia = sqlsrv_fetch_object($stmt))
 {
-	$diasPeriodo[] = array('Dia' => $dia->Dia, 'Fecha' => $dia->Fecha);
+	$diasPeriodo[] = array(
+		'Dia' => $dia->Dia,
+		'Fecha' => $dia->Fecha
+	);
 	
 	++$counter;
 }
 
 $data['DiasPeriodo']['Cantidad'] = $counter;
-$data['DiasPeriodo']['Dias'] = $diasPeriodo;
+$data['DiasPeriodo']['Dias'] 	 = $diasPeriodo;
 
 
-$tsql = "{call [InterfazNominasSao].[uspAsistenciaEmpelados](?)}";
-$params = array($_POST['in']);
+$tsql = "{call [InterfazNominas].[uspAsistenciaEmpelados](?)}";
+$params = array($_GET['in']);
 $stmt = sqlsrv_query($conn, $tsql, $params);
 
-if(!$stmt) {
+if( ! $stmt ) {
 	$data['success'] = 0;
 	$data['errorMessage'] = getErrorMessage();
 
@@ -68,22 +71,28 @@ $counter = 0;
 
 while($asistencia = sqlsrv_fetch_object($stmt))
 {
-	if($ultimoEmpleado !== $asistencia->idEmpleadoNOM)
+	if($ultimoEmpleado !== $asistencia->IDEmpleadoNOM)
 	{
 		++$counter;
-		$ultimoEmpleado = $asistencia->idEmpleadoNOM;
-		$data['Empleados'][] = array( 'idEmpleadoNom' => $asistencia->idEmpleadoNOM
-									, 'CodigoEmpleado' => $asistencia->CodigoEmpleado
-									, 'Nombre' => $asistencia->NombreNOM
-									, 'AlmacenDestino' => $asistencia->AlmacenDestino
-									, 'Asistencia' => array()
-									);
+
+		$ultimoEmpleado = $asistencia->IDEmpleadoNOM;
+		
+		$data['Empleados'][] =
+			array(
+				  'IDEmpleadoNOM'  => $asistencia->IDEmpleadoNOM
+				, 'CodigoEmpleado' => $asistencia->CodigoEmpleado
+				, 'Nombre' 		   => $asistencia->NombreNOM
+				, 'AlmacenDestino' => $asistencia->AlmacenDestino
+				, 'Asistencia'     => array()
+			);
 	}
 	
-	$data['Empleados'][$counter-1]['Asistencia'][] = array( 'Dia' => $asistencia->Fecha
-														  , 'Asistio' => $asistencia->Asistencia
-														  , 'Cantidad' => $asistencia->Cantidad
-														  );
+	$data['Empleados'][$counter-1]['Asistencia'][] =
+		array(
+			  'Dia'      => $asistencia->Fecha
+			, 'Asistio'  => $asistencia->Asistencia
+			, 'Cantidad' => $asistencia->Cantidad
+		);
 }
 
 sqlsrv_free_stmt($stmt);

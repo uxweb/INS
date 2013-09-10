@@ -40,7 +40,7 @@ var PROYECTOS = {
 				{
 					$('<li></li>')
 					.html(this.Nombre)
-					.data('idProyecto', this.idProyecto)
+					.data('IDProyecto', this.IDProyecto)
 					.appendTo(_proyectos);
 				});
 
@@ -67,7 +67,7 @@ var PROYECTOS = {
 		if(PERIODOS.fetching)
 			PERIODOS.activeRequest.abort();
 			
-		this.selectedItem = opt.data('idProyecto');
+		this.selectedItem = opt.data('IDProyecto');
 		opt.siblings().removeClass('selected').end().addClass('selected');
 		this.onSelect();
 	},
@@ -92,7 +92,6 @@ var PERIODOS = {
 		
 		_per.activeRequest =
 		$.ajax({
-			type: 'POST',
 			url: _per.dataURL,
 			data: {p: PROYECTOS.selectedItem},
 			dataType: 'json',
@@ -134,7 +133,7 @@ var PERIODOS = {
 							{
 								var _estatusClass = null;
 								
-								switch(this.idEstatus)
+								switch(this.IDEstatus)
 								{
 									case 1:{
 										_estatusClass = 'generada';
@@ -146,9 +145,9 @@ var PERIODOS = {
 								}
 								
 								$('<li><span class="icon ' + _estatusClass + '" title="' + this.Estatus + '"></span><span class="text periodo">' + this.Periodo + '</span></li>')
-								 .data({'idPeriodo': this.idPeriodo
-								 	  , 'idEstatus': this.idEstatus
-								 	  , 'idNomina': this.idNomina
+								 .data({'IDPeriodo': this.IDPeriodo
+								 	  , 'IDEstatus': this.IDEstatus
+								 	  , 'IDNomina': this.IDNomina
 							 	  })
 								 .appendTo(_periodos);
 							});
@@ -221,16 +220,13 @@ var PERIODOS = {
 	{			
         opt.addClass('selected');
         
-        this.selectedItem = {'idPeriodo': opt.parent().data('idPeriodo')
-        				  , 'idEstatus': opt.parent().data('idEstatus')
-        				  , 'idNomina': opt.parent().data('idNomina')};
+        this.selectedItem = {'IDPeriodo': opt.parent().data('IDPeriodo')
+        				  , 'IDEstatus': opt.parent().data('IDEstatus')
+        				  , 'IDNomina': opt.parent().data('IDNomina')};
         				  
         this.onSelect();
 	},
-	onSelect: function()
-	{
-		
-	}
+	onSelect: function(){}
 };
 
 

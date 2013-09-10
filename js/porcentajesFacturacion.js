@@ -2,7 +2,6 @@ $(function() {
 	
 	// CARGA LOS CONCEPTOS DE CADA PROYECTO
 	$.ajax({
-		type: 'POST',
 		url: 'modulos/porcentajes/GetPorcentajesFacturacion.php',
 		dataType: 'json',
 		
@@ -30,7 +29,7 @@ $(function() {
 			$.each(json.Proyectos, function()
 			{
 				var _proyecto = this;
-				_blocks = $('<div id="' + this.idProyecto + '" class="block">'
+				_blocks = $('<div id="' + this.IDProyecto + '" class="block">'
 			          	+    '<h3 class="block-title">' + this.Proyecto + '</h3>'
 			          	+      '<ul class="menu hz-menu">'
 			          	+		 '<li><span class="icon add"></span><span class="text agrega-concepto">Nuevo Porcentaje</span></li>'
@@ -68,7 +67,7 @@ $(function() {
 	      			+	'<td>' + this.IVA + '</td>'
 	      			+ '</tr>'
       				)
-      				.data({'idProyecto': _proyecto.idProyecto, 'idPorcentaje': this.idPorcentaje})
+      				.data({'IDProyecto': _proyecto.IDProyecto, 'IDPorcentaje': this.IDPorcentaje})
       				.appendTo(_tableContent);
 				});
 				
@@ -99,18 +98,20 @@ $(function() {
 			
 			LIGHTBOX.show();
 			
-			$('#vig').datepicker({
-								   dateFormat: 'dd-mm-yy',
-								   altField: '#vigencia',
-								   altFormat: 'yy-mm-dd',
-								   showWeek: 'true',
-								   firstDay: '1',
-								   showOtherMonths: "true",
-								   selectOtherMonths: "true",
-								   buttonImage: "img/calendar/calendar_light-green_16x16.png",
-								   showOn: "both",
-								   buttonImageOnly: true
-								 });
+			$('#vig').datepicker(
+				{
+				   dateFormat: 'dd-mm-yy',
+				   altField: '#vigencia',
+				   altFormat: 'yy-mm-dd',
+				   showWeek: 'true',
+				   firstDay: '1',
+				   showOtherMonths: "true",
+				   selectOtherMonths: "true",
+				   buttonImage: "img/calendar/calendar_light-green_16x16.png",
+				   showOn: "both",
+				   buttonImageOnly: true
+				 }
+			);
 			
 			/*
 			 * RESTRINGE LA ENTRADA A NUMEROS EN LOS CAMPOS DEL FORMULARIO
@@ -212,7 +213,7 @@ $(function() {
 				      			+	'<td>' + _iva + '</td>'
 				      			+ '</tr>'
 			      				)
-			      				.data({'idProyecto': _idProyecto, 'idPorcentaje': json.idPorcentaje})
+			      				.data({'IDProyecto': _idProyecto, 'IDPorcentaje': json.IDPorcentaje})
 			      				.appendTo(_table);
 			      				
 			      				LIGHTBOX.hide();
@@ -259,7 +260,7 @@ $(function() {
 					$.ajax({
 						type: 'POST',
 						url: 'modulos/porcentajes/EliminaPorcentaje.php',
-						data: {ip: $(_item).data('idPorcentaje')},
+						data: {ip: $(_item).data('IDPorcentaje')},
 						dataType: 'json',
 						async: false, // PETICION SINCRONA PARA NO PERDER LA REFERENCIA DE CADA ITEM
 						

@@ -6,7 +6,7 @@ require_once("../../inc/DBConn.php");
 	
 	$conn = modulosSAO();
 	
-	if(!$conn) {
+	if( ! $conn) {
 		$data['success'] = 0;
 		$data['errorMessage'] = 'No se pudo establecer una conexion con el servidor de Base de Datos';
 		
@@ -14,9 +14,9 @@ require_once("../../inc/DBConn.php");
 		return;
 	}
 	
-	$tsql = "{call [InterfazNominasSao].[uspListaConceptosNomina](?, ?, ?, ?, ?)}";
+	$tsql = "{call [InterfazNominas].[uspListaConceptosNomina](?, ?, ?, ?, ?)}";
 	
-	$params = array($_POST['p'], 1, 1, 1, 1);
+	$params = array($_GET['p'], 1, 1, 1, 1);
 	
 	$stmt = sqlsrv_query($conn, $tsql, $params);
 	
@@ -40,17 +40,21 @@ require_once("../../inc/DBConn.php");
 		{
 			$UltimoTipo = $conceptos->TipoConcepto;
 
-			$data['Conceptos'][] = array('TipoConcepto' => $conceptos->TipoConcepto,
-										 'Conceptos' => array()
-										);
+			$data['Conceptos'][] =
+				array(
+					'TipoConcepto' => $conceptos->TipoConcepto,
+					'Conceptos'    => array()
+				);
 			
 			if(count($data['Conceptos']) > 1)
 				$counter++;
 		}
 		
-		$data['Conceptos'][$counter]['Conceptos'][] = array('idConcepto' => $conceptos->idConcepto,
-															 'Concepto' => $conceptos->Concepto,
-														   );
+		$data['Conceptos'][$counter]['Conceptos'][] =
+			array(
+				'IDConcepto' => $conceptos->IDConcepto,
+				'Concepto' 	 => $conceptos->Concepto,
+			);
 	}
 	
 	sqlsrv_free_stmt($stmt);

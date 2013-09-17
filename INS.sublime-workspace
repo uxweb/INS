@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"fon",
+				"font-size"
+			],
+			[
 				"borde",
 				"border"
 			],
@@ -114,10 +118,6 @@
 			[
 				"IDD",
 				"IDDocumento"
-			],
-			[
-				"fon",
-				"font-weight"
 			],
 			[
 				"Pasivo",
@@ -239,22 +239,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "css/general.css",
-			"settings":
-			{
-				"buffer_size": 13520,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "inc/app_header.php",
-			"settings":
-			{
-				"buffer_size": 249,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -300,6 +284,43 @@
 	},
 	"file_history":
 	[
+		"/D/www/INS/js/almacenesCosto.js",
+		"/D/www/INS/js/porcentajesFacturacion.js",
+		"/D/www/INS/js/general.js",
+		"/D/www/INS/js/conceptosAfectables.js",
+		"/D/www/INS/js/clavesTrabajadores.js",
+		"/D/www/INS/js/prenomina.js",
+		"/D/www/INS/modulos/lanzamiento/GetAsistenciaEmpleados.php",
+		"/D/www/INS/js/listaAsistencia.js",
+		"/D/www/INS/js/opciones_seleccion.js",
+		"/D/www/INS/inc/GetListaProyectos.php",
+		"/D/www/INS/modulos/prenomina/GetPrenomina.php",
+		"/D/www/INS/modulos/prenomina/GetListaPeriodosNomina.php",
+		"/D/www/INS/modulos/prenomina/GeneraPrenomina.php",
+		"/D/www/INS/modulos/prenomina/EliminaPrenomina.php",
+		"/D/www/INS/modulos/porcentajes/RegistraPorcentajes.php",
+		"/D/www/INS/modulos/porcentajes/GetPorcentajesFacturacion.php",
+		"/D/www/INS/modulos/porcentajes/EliminaPorcentaje.php",
+		"/D/www/INS/modulos/lanzamiento/GetListaPrenominas.php",
+		"/D/www/INS/modulos/lanzamiento/GeneraListas.php",
+		"/D/www/INS/modulos/lanzamiento/EnviaListas.php",
+		"/D/www/INS/modulos/lanzamiento/EliminaListas.php",
+		"/D/www/INS/modulos/conceptos/SetAplicaConcepto.php",
+		"/D/www/INS/modulos/conceptos/GetNaturalezasConcepto.php",
+		"/D/www/INS/modulos/conceptos/GetConceptosNomina.php",
+		"/D/www/INS/modulos/conceptos/GetConceptos.php",
+		"/D/www/INS/modulos/conceptos/EliminaConcepto.php",
+		"/D/www/INS/modulos/conceptos/AgregaConcepto.php",
+		"/D/www/INS/modulos/claves/SetClaveProyecto.php",
+		"/D/www/INS/modulos/claves/GetClavesProyectos.php",
+		"/D/www/INS/modulos/almacenes/SetEstatusAlmacen.php",
+		"/D/www/INS/modulos/almacenes/GetTiposCosto.php",
+		"/D/www/INS/modulos/almacenes/GetAlmacenesSAO.php",
+		"/D/www/INS/modulos/almacenes/GetAlmacenesCosto.php",
+		"/D/www/INS/modulos/almacenes/EliminaAlmacen.php",
+		"/D/www/INS/modulos/almacenes/AgregaAlmacen.php",
+		"/D/www/INS/inc/app_header.php",
+		"/D/www/INS/css/general.css",
 		"/D/www/INS/inc/app_nav.php",
 		"/C/Users/Uziel/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Uziel/AppData/Roaming/Sublime Text 2/Packages/User/Distraction Free.sublime-settings",
@@ -390,44 +411,7 @@
 		"/C/AppServ/www/ControlRemesas/modulos/autorizacion/CambiaEstadoDocumento.php",
 		"/C/AppServ/www/ControlRemesas/modulos/autorizacion/AutorizaDocumento.php",
 		"/C/AppServ/www/ControlRemesas/inc/templates/menu_opciones_documento.tpl.php",
-		"/C/AppServ/www/ControlRemesas/modulos/autorizacion/RechazaDocumento.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/SolicitaRemesa.php",
-		"/C/AppServ/www/ControlRemesas/modulos/autorizacion/LiberaRemesa.php",
-		"/C/AppServ/www/ControlRemesas/inc/models/DBNoResultsException.class.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/GetDocumentosRemesa.php",
-		"/C/AppServ/www/ControlRemesas/inc/models/RemesaException.class.php",
-		"/C/AppServ/www/ControlRemesas/inc/models/RemesasList.class.php",
-		"/C/AppServ/www/ControlRemesas/inc/app-menu.php",
-		"/C/AppServ/www/ControlRemesas/inc/app-header.php",
-		"/C/AppServ/www/ControlRemesas/inc/lib/Util.class.php",
-		"/C/AppServ/www/ControlRemesas/modulos/autorizacion/LiberaDocumentos.php",
-		"/C/AppServ/www/ControlRemesas/modulos/autorizacion/ModificaMontoDocumento.php",
-		"/C/AppServ/www/ControlRemesas/modulos/autorizacion/SinRecursosDocumento.php",
-		"/C/AppServ/www/ControlRemesas/modulos/autorizacion/TerminaProcesoRemesa.php",
-		"/C/AppServ/www/ControlRemesas/modulos/autorizacion/EnEsperaDocumento.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/ActualizaDocumentosSAO.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/AgregaDocumento.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/AsignaRubroDocumento.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/AsignaTipoGastoDocumento.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/BorraRemesa.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/EliminaDocumento.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/GetListaDestinatarios.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/GetListaEmpresasSolicitantes.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/GetListaMonedas.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/GetListaRubros.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/GetListaTiposDocumentoRemesa.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/GetListaTiposGasto.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/GetListaTiposPago.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/GetTotalRemesa.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/ModificaMontoSolicitado.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/RegistraRemesa.php",
-		"/C/AppServ/www/ControlRemesas/modulos/registro/SeleccionaDocumento.php",
-		"/C/AppServ/www/ControlRemesas/inc/models/db/DBConf.class.php",
-		"/C/AppServ/www/ControlRemesas/RemesasListController.php",
-		"/C/AppServ/www/mvc/index.php",
-		"/C/AppServ/www/ControlRemesas/test.php",
-		"/C/AppServ/www/mvc/includes/init.php",
-		"/C/AppServ/www/ControlRemesas/inc/js/fianzas.js"
+		"/C/AppServ/www/ControlRemesas/modulos/autorizacion/RechazaDocumento.php"
 	],
 	"find":
 	{
@@ -445,6 +429,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"_POST",
+			"POST",
+			"consultar",
 			"nav",
 			"logo",
 			"nav",
@@ -569,10 +556,7 @@
 			"onOpenFile",
 			"registraComprobantePago",
 			"comprobantesLoader",
-			"details",
-			"No se encontraron archivos",
-			"comprobantesCargados",
-			"GetComprobantesPago.php"
+			"details"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -580,6 +564,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"_GET",
 			"inc/controllers/DocumentoController.php",
 			"inc/controller/DocumentoController.php",
 			"inc/control/DocumentoController.php",
@@ -600,62 +585,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "css/general.css",
-					"settings":
-					{
-						"buffer_size": 13520,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								587,
-								175
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 110.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "inc/app_header.php",
-					"settings":
-					{
-						"buffer_size": 249,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								249,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -710,7 +641,7 @@
 		[
 			[
 				"",
-				"/D/www/ModulosSAO/ModulosSAO.sublime-project"
+				"/D/www/ControlRemesas/ControlRemesas.sublime-project"
 			]
 		],
 		"width": 380.0

@@ -239,6 +239,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "modulos/claves/SetClaveProyecto.php",
+			"settings":
+			{
+				"buffer_size": 655,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -585,8 +593,36 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "modulos/claves/SetClaveProyecto.php",
+					"settings":
+					{
+						"buffer_size": 655,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								361,
+								361
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -641,7 +677,7 @@
 		[
 			[
 				"",
-				"/D/www/ControlRemesas/ControlRemesas.sublime-project"
+				"/D/www/ControlMaquinaria/ControlMaquinaria.sublime-project"
 			]
 		],
 		"width": 380.0

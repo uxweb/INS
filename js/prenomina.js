@@ -2,10 +2,11 @@
  * OBJETO PRENOMINA
 */
 var PRENOMINA = {
+
 	container: '#prenom',
-	generaPrenomina: function()
-	{
-		var _pn = this;
+	
+	generaPrenomina: function() {
+		var that = this;
 		
 		var _params = {p: null, ip: null, r: null};
 
@@ -26,129 +27,129 @@ var PRENOMINA = {
 			
 			beforeSend: function()
 			{
-				_pn.clear();
+				that.clear();
 				LIGHTBOX.show();
 			},
 			success: function(json)
 			{
 				try{
-					if(!json.success)
-					{
+					if ( ! json.success ) {
+
 						messageConsole.displayMessage(json.errorMessage, 'error');
 						return false;
 					}
+
+					messageConsole.displayMessage('La pren&oacute;mina se gener&oacute; correctamente.', 'success');
+					
+					// ACTUALIZA LA REFERENCIA DE EL PERIODO
+					PERIODOS.selectedItem.IDEstatus = 1;
+					PERIODOS.selectedItem.IDNomina = json.IDNomina;
+					
+					// ACTUALIZA EL ICONO Y MENSAJE DE ESTATUS DEL PERIODO
+					$(PERIODOS.container)
+					.find('.selected')
+					.prev('.icon')
+					.removeClass('no-generada').addClass('generada').attr({'title': 'Generada', 'alt': 'Generada'})
+					.parent()
+					.data({'IDEstatus': PERIODOS.selectedItem.IDEstatus, 'IDNomina': PERIODOS.selectedItem.IDNomina});
+					
+					
+					// HABILITA LAS OPCIONES
+					var elements = '';
+					if ( PERIODOS.selectedItem.IDEstatus == 1 )
+						elements = '#borra-nomina, #genera-nomina, #consulta-nomina';
+					else
+						elements = '#genera-nomina';
+						
+					OPCIONES.enable(elements);
+					
 				} catch(e) {
 					messageConsole.displayMessage('Error: ' + e.message, 'error');
-					return false;
 				}
-				
-				messageConsole.displayMessage('La pren&oacute;mina se gener&oacute; correctamente.', 'success');
-				
-				// ACTUALIZA LA REFERENCIA DE EL PERIODO
-				PERIODOS.selectedItem.IDEstatus = 1;
-				PERIODOS.selectedItem.IDNomina = json.IDNomina;
-				
-				// ACTUALIZA EL ICONO Y MENSAJE DE ESTATUS DEL PERIODO
-				$(PERIODOS.container)
-				.find('.selected')
-				.prev('.icon')
-				.removeClass('no-generada').addClass('generada').attr({'title': 'Generada', 'alt': 'Generada'})
-				.parent()
-				.data({'IDEstatus': PERIODOS.selectedItem.IDEstatus, 'idNomina': PERIODOS.selectedItem.IDNomina});
-				
-				
-				// HABILITA LAS OPCIONES
-				var elements = '';
-				if(PERIODOS.selectedItem.IDEstatus == 1)
-					elements = '#borra-nomina, #genera-nomina, #consulta-nomina';
-				else
-					elements = '#genera-nomina';
-					
-				OPCIONES.enable(elements);
 			},
-			error: function()
-			{
-				LIGHTBOX.hide();
-			},
-			complete: function()
-			{
-				LIGHTBOX.hide();
-			}
+			error: function() { LIGHTBOX.hide(); },
+			complete: function() { LIGHTBOX.hide();	}
 		});
 	},
-	borraPrenomina: function()
-	{
-		if ( !confirm('La prenomina sera borrada, Continuar?') )
+
+	borraPrenomina: function() {
+
+		if ( ! confirm('La prenomina sera borrada, Continuar?') )
 			return false;
 		
-		var _pn = this;
+		var that = this;
 		
 		LIGHTBOX.title = 'Borrando Pren&oacute;mina ...';
 		LIGHTBOX.closeButton = false;
 		LIGHTBOX.closeOverlay = false;
 		LIGHTBOX.content = '<div class="ajax-loader"></div>';
+		LIGHTBOX.show();
 		
 		$.ajax({
 			type: 'POST',
 			url: 'modulos/prenomina/EliminaPrenomina.php',
-			data: {"in": PERIODOS.selectedItem.IDNomina},
-			dataType: 'json',
-			
-			beforeSend: function()
-			{
-				LIGHTBOX.show();
+			data: {
+				"in": PERIODOS.selectedItem.IDNomina
 			},
-			success: function(json)
-			{
-				try{
-					if(!json.success)
-					{
+			dataType: 'json',
+			success: function(json) {
+				try {
+					if ( ! json.success ) {
+
 						messageConsole.displayMessage(json.errorMessage, 'error');
 						return false;
 					}
+
+					that.clear();
+					messageConsole.displayMessage('La prenómina se borró correctamente.', 'success');
+					
+					// ACTUALIZA LAS REFERENCIAS DE EL PERIODO
+					PERIODOS.selectedItem.IDEstatus = 0;
+					PERIODOS.selectedItem.IDNomina = null;
+					
+					// ACTUALIZA ICONO Y MENSAJE DE ESTATUS DEL PERIODO
+					$(PERIODOS.container)
+					.find('.selected')
+					.prev('.icon')
+					.removeClass('generada')
+					.addClass('no-generada')
+					.attr({
+						'title': 'No Generada',
+						'alt': 'No Generada'
+					})
+					.parent()
+					.data({
+						'IDEstatus': PERIODOS.selectedItem.IDEstatus,
+						'IDNomina': PERIODOS.selectedItem.IDNomina
+					});
+					
+					// DESHABILITA BORRAR Y CONSULTAR PERIODO
+					$(OPCIONES.container)
+					.find('#borra-nomina, #consulta-nomina')
+					.attr('disabled', 'disabled').addClass('disabled');
+
 				} catch(e) {
 					messageConsole.displayMessage('Error: ' + e.message, 'error');
-					return false;
 				}
-				
-				_pn.clear();
-				messageConsole.displayMessage('La pren&oacute;mina se borr&oacute; correctamente.', 'success');
-				
-				// ACTUALIZA LAS REFERENCIAS DE EL PERIODO
-				PERIODOS.selectedItem.IDEstatus = 0;
-				PERIODOS.selectedItem.IDNomina = null;
-				
-				// ACTUALIZA ICONO Y MENSAJE DE ESTATUS DEL PERIODO
-				$(PERIODOS.container)
-				.find('.selected')
-				.prev('.icon')
-				.removeClass('generada').addClass('no-generada').attr({'title': 'No Generada', 'alt': 'No Generada'})
-				.parent()
-				.data({'idEstatus': PERIODOS.selectedItem.idEstatus, 'idNomina': PERIODOS.selectedItem.IDNomina});
-				
-				// DESHABILITA BORRAR Y CONSULTAR PERIODO
-				$(OPCIONES.container).find('#borra-nomina, #consulta-nomina').attr('disabled', 'disabled').addClass('disabled');
 			},
-			error: function()
-			{
-				LIGHTBOX.hide();
-			},
-			complete: function()
-			{
-				LIGHTBOX.hide();
-			}
+			error: function() {	LIGHTBOX.hide(); },
+			complete: function() { LIGHTBOX.hide();	}
 		});
 	},
+
 	consultaPrenomina: function() {
-		var _pn = this;
+		
+		var that = this;
 		
 		$.ajax({
 			url: 'modulos/prenomina/GetPrenomina.php',
-			data: {"in": PERIODOS.selectedItem.IDNomina},
+			data: {
+				"in": PERIODOS.selectedItem.IDNomina
+			},
 			dataType: 'json',
 			
 			beforeSend: function() {
-				_pn.clear();
+				that.clear();
 				
 				OPCIONES.disable();
 				$('#consulta-nomina')
@@ -156,71 +157,73 @@ var PRENOMINA = {
 			},
 			success: function(json) {
 				
-				try{
+				try {
 					
-					if( !json.success ) {
+					if ( ! json.success ) {
 						messageConsole.displayMessage(json.errorMessage, 'error');
 						return false;
 					}
 					
-					var _toolbar = $('<ul class="menu hz-menu table-toolbar">'
-									   + '   <li class="select-all-rows">'
-									   + '     <span class="icon unchecked"></span>'
-									   + '   </li>'
-									   + '   <li>'
-									   + '     <span class="tool">Mostrar:</span><span class="tool-option selected"><a class="show-all">Todos</a></span><span class="tool-option "><a class="show-inconsistent">Inconsistentes</a></span>'
-									   + '   </li>'
-									   + ' </ul>');
-					
-					var _tblEmpleados = $('<div class="table-container"><table id="tabla_empleados" class="tabla-empleados">'
-									   + '<colgroup>'
-									   +   '<col class="icon" />'
-									   +   '<col class="codigo" />'
-									   +   '<col/>'
-									   +   '<col class="nss" />'
-									   +   '<col class="rfc" />'
-									   +   '<col span="2"class="fecha" />'
-									   +   '<col/>'
-									   +   '<col span="2" class="monto"/>'
-									   +   '<col class="icon" />'
-									   + '</colgroup>'
-									   + '<thead>'
-									   +   '<tr>'
-									   +     '<th></th>'
-									   +     '<th>Código</th>'
-									   +     '<th>Nombre</th>'
-									   +     '<th>NSS</th>'
-									   +     '<th>RFC</th>'
-									   +     '<th>Alta</th>'
-									   +     '<th>Baja</th>'
-									   +     '<th>Categoria</th>'
-									   +     '<th>Importe Jornales</th>'
-									   +     '<th>Importe Por Distribuir</th>'
-									   +     '<th></th>'
-									   +   '</tr>'
-									   + '</thead>'
-									   + '<tbody>'
-									   + '</tbody>'
-									   + '</table></div>');
+					var _toolbar = 
+						$('<ul class="menu hz-menu table-toolbar">'
+					   	+   '<li class="select-all-rows">'
+					   	+     '<span class="icon unchecked"></span>'
+					   	+   '</li>'
+					   	+   '<li>'
+					   	+     '<span class="tool">Mostrar:</span><span class="tool-option selected"><a class="show-all">Todos</a></span><span class="tool-option "><a class="show-inconsistent">Inconsistentes</a></span>'
+					   	+   '</li>'
+					   	+ '</ul>');
+	
+					var _tblEmpleados =
+						$('<div class="table-container"><table id="tabla_empleados" class="tabla-empleados">'
+					   + '<colgroup>'
+					   +   '<col class="icon" />'
+					   +   '<col class="codigo" />'
+					   +   '<col/>'
+					   +   '<col class="nss" />'
+					   +   '<col class="rfc" />'
+					   +   '<col span="2"class="fecha" />'
+					   +   '<col/>'
+					   +   '<col span="2" class="monto"/>'
+					   +   '<col class="icon" />'
+					   + '</colgroup>'
+					   + '<thead>'
+					   +   '<tr>'
+					   +     '<th></th>'
+					   +     '<th>Código</th>'
+					   +     '<th>Nombre</th>'
+					   +     '<th>NSS</th>'
+					   +     '<th>RFC</th>'
+					   +     '<th>Alta</th>'
+					   +     '<th>Baja</th>'
+					   +     '<th>Categoria</th>'
+					   +     '<th>Importe Jornales</th>'
+					   +     '<th>Importe Por Distribuir</th>'
+					   +     '<th></th>'
+					   +   '</tr>'
+					   + '</thead>'
+					   + '<tbody>'
+					   + '</tbody>'
+					   + '</table></div>');
 					
 					_toolbar.click(function(event) {
 						
-						var _tgt = $(event.target);
+						var $tgt = $(event.target);
 	
-						if( _tgt.is('.show-all') ) {
+						if( $tgt.is('.show-all') ) {
 							
 							$('#tabla_empleados tbody tr').removeClass('zebra');
 							
-							$(_pn.container).find('table.tabla-empleados tbody tr').show();
+							$(that.container).find('table.tabla-empleados tbody tr').show();
 							$('#tabla_empleados tbody tr:odd').addClass('zebra');
-							_tgt.parent().addClass('selected').siblings().removeClass('selected');
+							$tgt.parent().addClass('selected').siblings().removeClass('selected');
 							
-						} else if( _tgt.is('.show-inconsistent') ) {
+						} else if( $tgt.is('.show-inconsistent') ) {
 							
 							$('#tabla_empleados tbody tr').removeClass('zebra');
 							
-							$(_pn.container).find('table.tabla-empleados tbody tr').not('.inconsistente').hide();
-							_tgt.parent().addClass('selected').siblings().removeClass('selected');
+							$(that.container).find('table.tabla-empleados tbody tr').not('.inconsistente').hide();
+							$tgt.parent().addClass('selected').siblings().removeClass('selected');
 							$('#tabla_empleados tbody tr:visible:odd').addClass('zebra');
 						}
 						
@@ -258,10 +261,10 @@ var PRENOMINA = {
 						_tblEmpleados.find('table').append('<tfoot class="total"><tr><th colspan="8">TOTAL</th><th class="numerico">' + json.TotalFormat + '</th><th class="numerico">' + json.TotalPorDistribuirFormat + '</th><th>&nbsp;</th></tr></tfoot>');
 					}
 					
-					_toolbar.appendTo(_pn.container);
-					_tblEmpleados.appendTo(_pn.container);
+					_toolbar.appendTo(that.container);
+					_tblEmpleados.appendTo(that.container);
 					$('#tabla_empleados tbody tr:odd').addClass('zebra');
-					_pn.behaviorPrenomina();
+					that.behaviorPrenomina();
 
 				} catch(e) {
 					messageConsole.displayMessage('Error: ' + e.message, 'error');

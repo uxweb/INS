@@ -107,7 +107,7 @@ var PERIODOS = {
 			success: function(json)
 			{
 				try {
-					if(!json.success)
+					if( ! json.success)
 					{
 						messageConsole.displayMessage(json.errorMessage, 'error');
 						return false;

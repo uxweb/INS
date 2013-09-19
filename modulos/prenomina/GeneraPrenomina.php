@@ -18,12 +18,12 @@ if($_POST) {
 	
 	$tsql = "{call [InterfazNominas].[uspGeneraNomina](?, ?, ?, ?)}";
 	
-	$idNomina = 0;
+	$IDNomina = 0;
 	$params = array(
 					  array($_POST['p'], SQLSRV_PARAM_IN)
 					, array($_POST['ip'], SQLSRV_PARAM_IN)
 					, array($_POST['r'], SQLSRV_PARAM_IN)
-					, array($idNomina, SQLSRV_PARAM_OUT)
+					, array($IDNomina, SQLSRV_PARAM_OUT)
 				   );
 	
 	$stmt = sqlsrv_query($conn, $tsql, $params);
@@ -40,7 +40,7 @@ if($_POST) {
 		$data['success'] = 1;
 	}
 	
-	$data['idNomina'] = $idNomina;
+	$data['IDNomina'] = $IDNomina;
 	
 	sqlsrv_close($conn);
 	
